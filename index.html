@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="J.V. Portfolio - Frontend developer and UI designer creating modern digital experiences."
+      content="J.V.'s portfolio featuring hands-on Raspberry Pi projects, including a DIY arcade and an offline electronics learning kiosk."
     />
     <title>J.V. | Portfolio</title>
     <style>
@@ -36,10 +36,12 @@
 
       body {
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background:
-          radial-gradient(circle at top left, rgba(124, 156, 255, 0.18), transparent 30%),
-          radial-gradient(circle at bottom right, rgba(96, 225, 195, 0.14), transparent 25%),
-          var(--bg);
+        background-color: #08080a;
+        background-image: url("assets/portfolio-background.png");
+        background-position: center top;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
         color: var(--text);
         line-height: 1.6;
       }
@@ -121,15 +123,15 @@
       }
 
       .btn-primary {
-        background: linear-gradient(135deg, var(--primary), var(--primary-2));
-        color: #07111c;
-        box-shadow: 0 10px 30px rgba(96, 225, 195, 0.25);
+        background: #ffffff;
+        color: #111827;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
       }
 
       .btn-secondary {
-        border-color: var(--line);
-        background: rgba(15, 23, 42, 0.4);
-        color: var(--text);
+        border-color: #ffffff;
+        background: #ffffff;
+        color: #111827;
       }
 
       .site-header {
@@ -137,7 +139,7 @@
         top: 0;
         z-index: 50;
         backdrop-filter: blur(18px);
-        background: rgba(8, 12, 23, 0.6);
+        background: #000000;
         border-bottom: 1px solid rgba(148, 163, 184, 0.12);
       }
 
@@ -176,9 +178,9 @@
 
       .menu-toggle {
         display: none;
-        background: transparent;
-        border: 1px solid var(--line);
-        color: var(--text);
+        background: #ffffff;
+        border: 1px solid #ffffff;
+        color: #111827;
         border-radius: 10px;
         width: 42px;
         height: 42px;
@@ -245,40 +247,16 @@
         position: relative;
         border-radius: 24px;
         overflow: hidden;
-        background: linear-gradient(135deg, rgba(124, 156, 255, 0.2), rgba(96, 225, 195, 0.18));
         min-height: 420px;
       }
 
-      .avatar-figure {
+      .avatar-photo {
         position: absolute;
         inset: 0;
-        background: linear-gradient(180deg, rgba(124, 156, 255, 0.14), rgba(9, 15, 27, 0.75)),
-          linear-gradient(135deg, #d7e0fb 0%, #8aa6ff 18%, #1b2338 42%, #0d1323 100%);
-      }
-
-      .avatar-figure::before,
-      .avatar-figure::after {
-        content: "";
-        position: absolute;
-        border-radius: 50%;
-      }
-
-      .avatar-figure::before {
-        width: 170px;
-        height: 170px;
-        background: rgba(255, 255, 255, 0.12);
-        left: 50%;
-        top: 90px;
-        transform: translateX(-50%);
-      }
-
-      .avatar-figure::after {
-        width: 240px;
-        height: 240px;
-        background: rgba(11, 16, 32, 0.7);
-        bottom: -30px;
-        left: 50%;
-        transform: translateX(-50%);
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 35%;
       }
 
       .badge-card {
@@ -303,6 +281,11 @@
         grid-template-columns: 1fr 1fr;
         gap: 2rem;
         align-items: center;
+      }
+
+      .contact-grid {
+        grid-template-columns: minmax(0, 760px);
+        justify-content: center;
       }
 
       .panel {
@@ -401,19 +384,6 @@
         overflow: hidden;
       }
 
-      .project-card::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(135deg, rgba(124, 156, 255, 0.18), transparent 50%, rgba(96, 225, 195, 0.12));
-        pointer-events: none;
-      }
-
-      .project-card > * {
-        position: relative;
-        z-index: 1;
-      }
-
       .project-card .meta {
         display: flex;
         align-items: center;
@@ -435,26 +405,14 @@
         padding-left: 1.5rem;
       }
 
-      .timeline-item::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 1.5rem;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, var(--primary), var(--primary-2));
-        box-shadow: 0 0 0 6px rgba(124, 156, 255, 0.12);
-      }
-
       .contact-card {
-        background: linear-gradient(135deg, rgba(124, 156, 255, 0.14), rgba(96, 225, 195, 0.1));
+        background: rgba(17, 24, 39, 0.72);
+        border-radius: 10px;
       }
 
       .contact-links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
+        display: grid;
+        gap: 0.9rem;
         margin-top: 1.5rem;
       }
 
@@ -463,13 +421,50 @@
         align-items: center;
         gap: 0.7rem;
         color: var(--text);
-        background: rgba(10, 15, 27, 0.5);
-        border: 1px solid var(--line);
-        border-radius: 16px;
-        padding: 0.9rem 1rem;
+        text-decoration: none;
+      }
+
+      .contact-icon {
+        display: grid;
+        flex: 0 0 40px;
+        width: 40px;
+        height: 40px;
+        place-items: center;
+        border: 1px solid currentColor;
+        border-radius: 13px;
+      }
+
+      .contact-icon svg {
+        width: 18px;
+        height: 18px;
+        fill: none;
+        stroke: currentColor;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2;
+      }
+
+      .contact-icon-email {
+        color: #22d3ee;
+        background: rgba(6, 182, 212, 0.12);
+      }
+
+      .contact-icon-location {
+        color: #34d399;
+        background: rgba(16, 185, 129, 0.12);
+      }
+
+      .contact-icon-institution {
+        color: #818cf8;
+        background: rgba(99, 102, 241, 0.14);
+      }
+
+      a.contact-item:hover {
+        color: var(--primary-2);
       }
 
       .site-footer {
+        background: #000000;
         border-top: 1px solid rgba(148, 163, 184, 0.12);
         padding: 2rem 0 3rem;
       }
@@ -484,6 +479,7 @@
 
       .footer-inner p {
         margin: 0;
+        color: #ffffff;
       }
 
       @media (max-width: 900px) {
@@ -562,11 +558,10 @@
       <section class="hero section">
         <div class="container hero-grid">
           <div>
-            <span class="eyebrow">Frontend Developer</span>
-            <h1>Designing digital experiences that feel effortless.</h1>
+            <span class="eyebrow">Embedded Project Builder</span>
+            <h1>Building hands-on projects with Raspberry Pi.</h1>
             <p class="lead">
-              I’m J.V., a frontend developer and UI designer focused on building clean,
-              responsive, and user-centered websites that turn ideas into polished products.
+              Hi, I’m John Vincent Molines, an engineering student at ICCT Colleges in Cainta, Rizal, with a passion for hardware, software development, and hands-on project building. I enjoy transforming ideas into practical solutions by combining technical creativity with problem-solving. From building a DIY arcade featuring over 100 games to working on an offline electronics learning kiosk, I continuously explore new technologies, develop my skills, and bring innovative ideas to life. My goal is to create meaningful projects that showcase my technical abilities, creativity, and passion for engineering.
             </p>
             <div class="cta-row">
               <a href="#projects" class="btn btn-primary">View Projects</a>
@@ -574,26 +569,22 @@
             </div>
             <div class="mini-stats">
               <div>
-                <strong>4+</strong>
-                <span>Years Experience</span>
+                <strong>2</strong>
+                <span>Featured Projects</span>
               </div>
               <div>
-                <strong>18</strong>
-                <span>Projects Delivered</span>
-              </div>
-              <div>
-                <strong>96%</strong>
-                <span>Client Satisfaction</span>
+                <strong>Pi</strong>
+                <span>Project Platform</span>
               </div>
             </div>
           </div>
 
           <div class="profile-card">
-            <div class="avatar-wrap" aria-label="Profile illustration">
-              <div class="avatar-figure"></div>
+            <div class="avatar-wrap">
+              <img class="avatar-photo" src="assets/profile-picture.png" alt="J.V.'s profile photo" />
               <div class="badge-card">
-                <strong>Available</strong>
-                <span>For freelance work</span>
+                <strong>Project Focus</strong>
+                <span>Embedded & Raspberry Pi</span>
               </div>
             </div>
           </div>
@@ -604,32 +595,31 @@
         <div class="container about-grid">
           <div>
             <span class="eyebrow">About me</span>
-            <h2>Building interfaces with clarity and personality.</h2>
+            <h2>Learning by building with hardware and software.</h2>
             <p>
-              I merge design thinking with frontend craftsmanship to create websites that look
-              modern, communicate clearly, and deliver smooth experiences across devices.
+              I enjoy creating practical technology projects. My work includes assembling and setting up a Raspberry Pi arcade, as well as contributing hardware, software, and research documentation to an offline kiosk that teaches engineering students about electronic components.
             </p>
             <ul class="about-list">
-              <li>Focused on responsive UI and accessibility</li>
-              <li>Strong eye for layout, typography, and interaction design</li>
-              <li>Experienced in turning business goals into digital experiences</li>
+              <li>Hands-on Raspberry Pi hardware assembly and setup</li>
+              <li>Combining software with interactive project experiences</li>
+              <li>Researching and explaining electronics and their applications</li>
             </ul>
           </div>
 
           <div class="panel">
-            <p>What I care about</p>
+            <p>Project interests</p>
             <div class="stats-box">
               <div class="stat">
-                <strong>UI</strong>
-                <span>Design</span>
+                <strong>Pi</strong>
+                <span>Embedded Projects</span>
               </div>
               <div class="stat">
-                <strong>UX</strong>
-                <span>Flow</span>
+                <strong>HW</strong>
+                <span>Hardware</span>
               </div>
               <div class="stat">
-                <strong>Web</strong>
-                <span>Performance</span>
+                <strong>SW</strong>
+                <span>Software</span>
               </div>
             </div>
           </div>
@@ -640,51 +630,46 @@
         <div class="container">
           <div class="section-head">
             <span class="eyebrow">Skills</span>
-            <h2>Tools and technologies I use to bring ideas to life.</h2>
+            <h2>Skills developed through hands-on Raspberry Pi projects.</h2>
           </div>
 
           <div class="skills-grid">
             <article class="skill-card">
-              <h3>Frontend</h3>
-              <p>Crafting responsive, accessible interfaces with a strong focus on performance and usability.</p>
+              <h3>Hardware & Embedded Projects</h3>
+              <p>Building Raspberry Pi projects through practical hardware assembly and setup.</p>
               <div class="pill-group">
-                <span class="pill">HTML5</span>
-                <span class="pill">CSS3</span>
-                <span class="pill">JavaScript</span>
-                <span class="pill">React</span>
+                <span class="pill">Raspberry Pi</span>
+                <span class="pill">Hardware Assembly</span>
+                <span class="pill">Embedded Projects</span>
               </div>
             </article>
 
             <article class="skill-card">
-              <h3>Design</h3>
-              <p>Turning concepts into clear visual systems that support business goals and delight users.</p>
+              <h3>Software & System Setup</h3>
+              <p>Setting up interactive project software and gaming systems for offline use.</p>
               <div class="pill-group">
-                <span class="pill">Figma</span>
-                <span class="pill">Wireframes</span>
-                <span class="pill">Design Systems</span>
-                <span class="pill">UX Research</span>
+                <span class="pill">Software Setup</span>
+                <span class="pill">Gaming Systems</span>
+                <span class="pill">Offline Learning</span>
               </div>
             </article>
 
             <article class="skill-card">
-              <h3>Development Workflow</h3>
-              <p>Organized and efficient delivery using modern tooling, version control, and best practices.</p>
+              <h3>Electronics Learning</h3>
+              <p>Explaining electronic components, their functions, and practical applications.</p>
               <div class="pill-group">
-                <span class="pill">Git</span>
-                <span class="pill">GitHub</span>
-                <span class="pill">VS Code</span>
-                <span class="pill">Responsive Design</span>
+                <span class="pill">Electronic Components</span>
+                <span class="pill">Component Functions</span>
+                <span class="pill">Applications</span>
               </div>
             </article>
 
             <article class="skill-card">
-              <h3>Core Strengths</h3>
-              <p>Combining technical execution with visual refinement to deliver polished digital products.</p>
+              <h3>Research & Documentation</h3>
+              <p>Researching project topics and documenting technical work clearly.</p>
               <div class="pill-group">
-                <span class="pill">Problem Solving</span>
-                <span class="pill">Creativity</span>
-                <span class="pill">Debugging</span>
-                <span class="pill">Communication</span>
+                <span class="pill">Technical Research</span>
+                <span class="pill">Project Documentation</span>
               </div>
             </article>
           </div>
@@ -701,67 +686,31 @@
           <div class="projects-grid">
             <article class="project-card">
               <div class="meta">
-                <span>Portfolio</span>
-                <span>2024</span>
+                <span>Embedded Project</span>
               </div>
-              <h3>Creative Studio Website</h3>
+              <h3>Project Arcade</h3>
               <p>
-                A visually rich portfolio website built to showcase brand identity, services, and client work with a premium feel.
+                A DIY Raspberry Pi arcade machine featuring over 100 games in one retro gaming setup. Built as a hands-on project combining hardware assembly and gaming system setup.
               </p>
-              <div class="pill-group">
-                <span class="pill">HTML</span>
-                <span class="pill">CSS</span>
-                <span class="pill">UI Design</span>
-              </div>
+              <p>
+                <strong>My Role:</strong> Hardware, Software
+              </p>
             </article>
 
             <article class="project-card">
               <div class="meta">
-                <span>E-Commerce</span>
-                <span>2023</span>
+                <span>Group Academic Project</span>
+                <span>Raspberry Pi</span>
               </div>
-              <h3>Shop Landing Page</h3>
+              <h3>TechLearn Kiosk</h3>
               <p>
-                Designed and developed a conversion-focused landing page with strong product storytelling and mobile optimization.
+                An interactive offline learning hub designed to help engineering students explore electronic components, their functions, and their applications.
               </p>
-              <div class="pill-group">
-                <span class="pill">Responsive</span>
-                <span class="pill">JavaScript</span>
-                <span class="pill">UX</span>
-              </div>
+              <p>
+                <strong>My Role:</strong> Hardware, Software, and Research Documentation
+              </p>
             </article>
 
-            <article class="project-card">
-              <div class="meta">
-                <span>Dashboard</span>
-                <span>2024</span>
-              </div>
-              <h3>Analytics Product UI</h3>
-              <p>
-                Built a structured dashboard concept focused on data clarity, hierarchy, and usability for internal reporting tools.
-              </p>
-              <div class="pill-group">
-                <span class="pill">React</span>
-                <span class="pill">Charts</span>
-                <span class="pill">UX</span>
-              </div>
-            </article>
-
-            <article class="project-card">
-              <div class="meta">
-                <span>Brand</span>
-                <span>2022</span>
-              </div>
-              <h3>Startup Launch Page</h3>
-              <p>
-                Developed an engaging launch page for a startup, balancing product messaging, CTAs, and visual identity.
-              </p>
-              <div class="pill-group">
-                <span class="pill">Landing Page</span>
-                <span class="pill">Branding</span>
-                <span class="pill">Marketing</span>
-              </div>
-            </article>
           </div>
         </div>
       </section>
@@ -769,32 +718,24 @@
       <section id="experience" class="section">
         <div class="container">
           <div class="section-head">
-            <span class="eyebrow">Experience</span>
-            <h2>Turning ideas into products through thoughtful execution.</h2>
+            <span class="eyebrow">Project Experience</span>
+            <h2>Hands-on experience building Raspberry Pi projects.</h2>
           </div>
 
           <div class="timeline">
             <article class="timeline-item">
-              <span class="eyebrow" style="margin-bottom: 0.4rem;">2022 — Present</span>
-              <h3>Freelance Frontend Developer</h3>
+              <span class="eyebrow" style="margin-bottom: 0.4rem;">Embedded Project</span>
+              <h3>Project Arcade</h3>
               <p>
-                Working with startups and individuals to design and build clean, conversion-oriented websites and digital experiences.
+                Assembled the hardware and set up the gaming software for a Raspberry Pi arcade featuring more than 100 games.
               </p>
             </article>
 
             <article class="timeline-item">
-              <span class="eyebrow" style="margin-bottom: 0.4rem;">2020 — 2022</span>
-              <h3>UI Designer & Web Specialist</h3>
+              <span class="eyebrow" style="margin-bottom: 0.4rem;">Group Academic Project</span>
+              <h3>TechLearn Kiosk</h3>
               <p>
-                Contributed to product interfaces, marketing pages, and brand visuals across multiple digital projects.
-              </p>
-            </article>
-
-            <article class="timeline-item">
-              <span class="eyebrow" style="margin-bottom: 0.4rem;">2018 — 2020</span>
-              <h3>Web Developer</h3>
-              <p>
-                Built and maintained websites, landing pages, and small business platforms with a focus on usability and responsiveness.
+                Contributed hardware, software, and research documentation to an offline learning hub that helps engineering students explore electronic components and their applications.
               </p>
             </article>
           </div>
@@ -805,34 +746,40 @@
         <div class="container contact-grid">
           <div class="panel contact-card">
             <span class="eyebrow">Contact</span>
-            <h2>Let’s build something meaningful together.</h2>
+            <h2>Let’s talk about hands-on technology projects.</h2>
             <p>
-              Whether you need a portfolio, landing page, or product interface, I’d love to hear about your project.
+              Interested in Raspberry Pi, embedded projects, or electronics learning? Get in touch to share ideas and discuss project collaborations.
             </p>
             <div class="contact-links">
-              <a href="mailto:hello@jvportfolio.dev" class="contact-item">✉ hello@jvportfolio.dev</a>
-              <a href="https://github.com" target="_blank" rel="noreferrer" class="contact-item">◌ GitHub</a>
-              <a href="https://linkedin.com" target="_blank" rel="noreferrer" class="contact-item">◌ LinkedIn</a>
+              <a href="mailto:molinesjv@gmail.com" class="contact-item">
+                <span class="contact-icon contact-icon-email" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <path d="m3 7 9 6 9-6" />
+                  </svg>
+                </span>
+                <span>molinesjv@gmail.com</span>
+              </a>
+              <div class="contact-item">
+                <span class="contact-icon contact-icon-location" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+                    <circle cx="12" cy="10" r="2.5" />
+                  </svg>
+                </span>
+                <span>Pinagbuhatan, Pasig, Philippines</span>
+              </div>
+              <a href="https://icct.edu.ph" target="_blank" rel="noreferrer" class="contact-item">
+                <span class="contact-icon contact-icon-institution" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M3 21h18M5 18h14M6 10v7m4-7v7m4-7v7m4-7v7M3 8l9-5 9 5v2H3z" />
+                  </svg>
+                </span>
+                <span>ICCT Colleges</span>
+              </a>
             </div>
           </div>
 
-          <div class="panel">
-            <p>Quick availability</p>
-            <div class="stats-box">
-              <div class="stat">
-                <strong>1</strong>
-                <span>Project in progress</span>
-              </div>
-              <div class="stat">
-                <strong>2</strong>
-                <span>Open slots</span>
-              </div>
-              <div class="stat">
-                <strong>48h</strong>
-                <span>Response time</span>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
     </main>
