@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="J.V. Portfolio - Frontend developer and UI designer creating modern digital experiences."
+    />
+    <title>J.V. | Portfolio</title>
+    <style>
+      :root {
+        --bg: #0b1020;
+        --bg-soft: #121a2d;
+        --panel: rgba(17, 24, 39, 0.9);
+        --panel-strong: #111827;
+        --card: #172033;
+        --line: rgba(148, 163, 184, 0.2);
+        --text: #e5eefb;
+        --muted: #a6b7d4;
+        --primary: #7c9cff;
+        --primary-2: #60e1c3;
+        --accent: #f7c873;
+        --shadow: 0 20px 45px rgba(15, 23, 42, 0.45);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(124, 156, 255, 0.18), transparent 30%),
+          radial-gradient(circle at bottom right, rgba(96, 225, 195, 0.14), transparent 25%),
+          var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      .container {
+        width: min(1120px, calc(100% - 2rem));
+        margin: 0 auto;
+      }
+
+      .section {
+        padding: 6rem 0;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.76rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--primary-2);
+        margin-bottom: 1rem;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 38px;
+        height: 1px;
+        background: linear-gradient(90deg, var(--primary-2), transparent);
+      }
+
+      h1, h2, h3 {
+        line-height: 1.1;
+        letter-spacing: -0.04em;
+      }
+
+      h1 {
+        font-size: clamp(2.75rem, 5vw, 5rem);
+      }
+
+      h2 {
+        font-size: clamp(2rem, 3vw, 3rem);
+        margin-bottom: 1rem;
+      }
+
+      p {
+        color: var(--muted);
+        font-size: 1.03rem;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        padding: 0.9rem 1.5rem;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        font-weight: 600;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        color: #07111c;
+        box-shadow: 0 10px 30px rgba(96, 225, 195, 0.25);
+      }
+
+      .btn-secondary {
+        border-color: var(--line);
+        background: rgba(15, 23, 42, 0.4);
+        color: var(--text);
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(18px);
+        background: rgba(8, 12, 23, 0.6);
+        border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 76px;
+      }
+
+      .brand {
+        font-size: 1.2rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .brand span {
+        color: var(--primary-2);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .nav-links a {
+        color: var(--muted);
+        transition: color 0.2s ease;
+      }
+
+      .nav-links a:hover {
+        color: var(--text);
+      }
+
+      .menu-toggle {
+        display: none;
+        background: transparent;
+        border: 1px solid var(--line);
+        color: var(--text);
+        border-radius: 10px;
+        width: 42px;
+        height: 42px;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      .hero {
+        padding-top: 5rem;
+        padding-bottom: 4rem;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 3rem;
+        align-items: center;
+      }
+
+      .lead {
+        color: var(--muted);
+        max-width: 640px;
+        margin: 1.25rem 0 2rem;
+      }
+
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .mini-stats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+      }
+
+      .mini-stats div {
+        min-width: 120px;
+      }
+
+      .mini-stats strong {
+        display: block;
+        font-size: 1.7rem;
+        color: var(--text);
+      }
+
+      .mini-stats span {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .profile-card {
+        position: relative;
+        background: linear-gradient(180deg, rgba(21, 31, 48, 0.9), rgba(17, 24, 39, 0.9));
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+      }
+
+      .avatar-wrap {
+        position: relative;
+        border-radius: 24px;
+        overflow: hidden;
+        background: linear-gradient(135deg, rgba(124, 156, 255, 0.2), rgba(96, 225, 195, 0.18));
+        min-height: 420px;
+      }
+
+      .avatar-figure {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(124, 156, 255, 0.14), rgba(9, 15, 27, 0.75)),
+          linear-gradient(135deg, #d7e0fb 0%, #8aa6ff 18%, #1b2338 42%, #0d1323 100%);
+      }
+
+      .avatar-figure::before,
+      .avatar-figure::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+      }
+
+      .avatar-figure::before {
+        width: 170px;
+        height: 170px;
+        background: rgba(255, 255, 255, 0.12);
+        left: 50%;
+        top: 90px;
+        transform: translateX(-50%);
+      }
+
+      .avatar-figure::after {
+        width: 240px;
+        height: 240px;
+        background: rgba(11, 16, 32, 0.7);
+        bottom: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .badge-card {
+        position: absolute;
+        right: 1.25rem;
+        bottom: 1.25rem;
+        background: rgba(8, 12, 23, 0.8);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 0.9rem 1rem;
+        backdrop-filter: blur(10px);
+      }
+
+      .badge-card strong {
+        display: block;
+        font-size: 1.2rem;
+      }
+
+      .about-grid,
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .panel {
+        background: rgba(17, 24, 39, 0.7);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 2rem;
+        box-shadow: var(--shadow);
+      }
+
+      .about-list {
+        display: grid;
+        gap: 0.85rem;
+        margin-top: 1.5rem;
+      }
+
+      .about-list li {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        color: var(--text);
+      }
+
+      .about-list li::before {
+        content: "✔";
+        color: var(--primary-2);
+        font-weight: 700;
+      }
+
+      .stats-box {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(100px, 1fr));
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .stats-box .stat {
+        background: rgba(18, 26, 45, 0.8);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 1.1rem;
+      }
+
+      .stats-box strong {
+        display: block;
+        font-size: 1.8rem;
+      }
+
+      .section-head {
+        max-width: 700px;
+        margin-bottom: 2.2rem;
+      }
+
+      .skills-grid,
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.5rem;
+      }
+
+      .skill-card,
+      .project-card,
+      .timeline-item {
+        background: rgba(17, 24, 39, 0.72);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 1.5rem;
+      }
+
+      .skill-card h3,
+      .project-card h3,
+      .timeline-item h3 {
+        margin-bottom: 0.7rem;
+      }
+
+      .pill-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
+        margin-top: 1rem;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.45rem 0.8rem;
+        border-radius: 999px;
+        border: 1px solid rgba(124, 156, 255, 0.35);
+        background: rgba(124, 156, 255, 0.08);
+        color: #cfe0ff;
+        font-size: 0.85rem;
+      }
+
+      .project-card {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .project-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(124, 156, 255, 0.18), transparent 50%, rgba(96, 225, 195, 0.12));
+        pointer-events: none;
+      }
+
+      .project-card > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .project-card .meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 0.8rem;
+        color: var(--primary-2);
+        font-size: 0.82rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .timeline {
+        display: grid;
+        gap: 1.2rem;
+      }
+
+      .timeline-item {
+        position: relative;
+        padding-left: 1.5rem;
+      }
+
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 1.5rem;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        box-shadow: 0 0 0 6px rgba(124, 156, 255, 0.12);
+      }
+
+      .contact-card {
+        background: linear-gradient(135deg, rgba(124, 156, 255, 0.14), rgba(96, 225, 195, 0.1));
+      }
+
+      .contact-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        color: var(--text);
+        background: rgba(10, 15, 27, 0.5);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 0.9rem 1rem;
+      }
+
+      .site-footer {
+        border-top: 1px solid rgba(148, 163, 184, 0.12);
+        padding: 2rem 0 3rem;
+      }
+
+      .footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .footer-inner p {
+        margin: 0;
+      }
+
+      @media (max-width: 900px) {
+        .hero-grid,
+        .about-grid,
+        .contact-grid,
+        .skills-grid,
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .nav-links {
+          position: absolute;
+          top: 76px;
+          left: 1rem;
+          right: 1rem;
+          display: none;
+          flex-direction: column;
+          align-items: flex-start;
+          background: rgba(8, 12, 23, 0.98);
+          border: 1px solid var(--line);
+          border-radius: 16px;
+          padding: 1rem;
+        }
+
+        .nav-links.open {
+          display: flex;
+        }
+
+        .menu-toggle {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .section {
+          padding: 4.5rem 0;
+        }
+
+        .cta-row {
+          flex-direction: column;
+        }
+
+        .btn {
+          width: 100%;
+        }
+
+        .stats-box {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a href="#top" class="brand">J<span>V</span></a>
+
+        <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+          ☰
+        </button>
+
+        <nav class="nav-links" aria-label="Main Navigation">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero section">
+        <div class="container hero-grid">
+          <div>
+            <span class="eyebrow">Frontend Developer</span>
+            <h1>Designing digital experiences that feel effortless.</h1>
+            <p class="lead">
+              I’m J.V., a frontend developer and UI designer focused on building clean,
+              responsive, and user-centered websites that turn ideas into polished products.
+            </p>
+            <div class="cta-row">
+              <a href="#projects" class="btn btn-primary">View Projects</a>
+              <a href="#contact" class="btn btn-secondary">Let’s Talk</a>
+            </div>
+            <div class="mini-stats">
+              <div>
+                <strong>4+</strong>
+                <span>Years Experience</span>
+              </div>
+              <div>
+                <strong>18</strong>
+                <span>Projects Delivered</span>
+              </div>
+              <div>
+                <strong>96%</strong>
+                <span>Client Satisfaction</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-card">
+            <div class="avatar-wrap" aria-label="Profile illustration">
+              <div class="avatar-figure"></div>
+              <div class="badge-card">
+                <strong>Available</strong>
+                <span>For freelance work</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section">
+        <div class="container about-grid">
+          <div>
+            <span class="eyebrow">About me</span>
+            <h2>Building interfaces with clarity and personality.</h2>
+            <p>
+              I merge design thinking with frontend craftsmanship to create websites that look
+              modern, communicate clearly, and deliver smooth experiences across devices.
+            </p>
+            <ul class="about-list">
+              <li>Focused on responsive UI and accessibility</li>
+              <li>Strong eye for layout, typography, and interaction design</li>
+              <li>Experienced in turning business goals into digital experiences</li>
+            </ul>
+          </div>
+
+          <div class="panel">
+            <p>What I care about</p>
+            <div class="stats-box">
+              <div class="stat">
+                <strong>UI</strong>
+                <span>Design</span>
+              </div>
+              <div class="stat">
+                <strong>UX</strong>
+                <span>Flow</span>
+              </div>
+              <div class="stat">
+                <strong>Web</strong>
+                <span>Performance</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="section">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Skills</span>
+            <h2>Tools and technologies I use to bring ideas to life.</h2>
+          </div>
+
+          <div class="skills-grid">
+            <article class="skill-card">
+              <h3>Frontend</h3>
+              <p>Crafting responsive, accessible interfaces with a strong focus on performance and usability.</p>
+              <div class="pill-group">
+                <span class="pill">HTML5</span>
+                <span class="pill">CSS3</span>
+                <span class="pill">JavaScript</span>
+                <span class="pill">React</span>
+              </div>
+            </article>
+
+            <article class="skill-card">
+              <h3>Design</h3>
+              <p>Turning concepts into clear visual systems that support business goals and delight users.</p>
+              <div class="pill-group">
+                <span class="pill">Figma</span>
+                <span class="pill">Wireframes</span>
+                <span class="pill">Design Systems</span>
+                <span class="pill">UX Research</span>
+              </div>
+            </article>
+
+            <article class="skill-card">
+              <h3>Development Workflow</h3>
+              <p>Organized and efficient delivery using modern tooling, version control, and best practices.</p>
+              <div class="pill-group">
+                <span class="pill">Git</span>
+                <span class="pill">GitHub</span>
+                <span class="pill">VS Code</span>
+                <span class="pill">Responsive Design</span>
+              </div>
+            </article>
+
+            <article class="skill-card">
+              <h3>Core Strengths</h3>
+              <p>Combining technical execution with visual refinement to deliver polished digital products.</p>
+              <div class="pill-group">
+                <span class="pill">Problem Solving</span>
+                <span class="pill">Creativity</span>
+                <span class="pill">Debugging</span>
+                <span class="pill">Communication</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Projects</span>
+            <h2>Selected work that reflects my process and versatility.</h2>
+          </div>
+
+          <div class="projects-grid">
+            <article class="project-card">
+              <div class="meta">
+                <span>Portfolio</span>
+                <span>2024</span>
+              </div>
+              <h3>Creative Studio Website</h3>
+              <p>
+                A visually rich portfolio website built to showcase brand identity, services, and client work with a premium feel.
+              </p>
+              <div class="pill-group">
+                <span class="pill">HTML</span>
+                <span class="pill">CSS</span>
+                <span class="pill">UI Design</span>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="meta">
+                <span>E-Commerce</span>
+                <span>2023</span>
+              </div>
+              <h3>Shop Landing Page</h3>
+              <p>
+                Designed and developed a conversion-focused landing page with strong product storytelling and mobile optimization.
+              </p>
+              <div class="pill-group">
+                <span class="pill">Responsive</span>
+                <span class="pill">JavaScript</span>
+                <span class="pill">UX</span>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="meta">
+                <span>Dashboard</span>
+                <span>2024</span>
+              </div>
+              <h3>Analytics Product UI</h3>
+              <p>
+                Built a structured dashboard concept focused on data clarity, hierarchy, and usability for internal reporting tools.
+              </p>
+              <div class="pill-group">
+                <span class="pill">React</span>
+                <span class="pill">Charts</span>
+                <span class="pill">UX</span>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="meta">
+                <span>Brand</span>
+                <span>2022</span>
+              </div>
+              <h3>Startup Launch Page</h3>
+              <p>
+                Developed an engaging launch page for a startup, balancing product messaging, CTAs, and visual identity.
+              </p>
+              <div class="pill-group">
+                <span class="pill">Landing Page</span>
+                <span class="pill">Branding</span>
+                <span class="pill">Marketing</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" class="section">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Experience</span>
+            <h2>Turning ideas into products through thoughtful execution.</h2>
+          </div>
+
+          <div class="timeline">
+            <article class="timeline-item">
+              <span class="eyebrow" style="margin-bottom: 0.4rem;">2022 — Present</span>
+              <h3>Freelance Frontend Developer</h3>
+              <p>
+                Working with startups and individuals to design and build clean, conversion-oriented websites and digital experiences.
+              </p>
+            </article>
+
+            <article class="timeline-item">
+              <span class="eyebrow" style="margin-bottom: 0.4rem;">2020 — 2022</span>
+              <h3>UI Designer & Web Specialist</h3>
+              <p>
+                Contributed to product interfaces, marketing pages, and brand visuals across multiple digital projects.
+              </p>
+            </article>
+
+            <article class="timeline-item">
+              <span class="eyebrow" style="margin-bottom: 0.4rem;">2018 — 2020</span>
+              <h3>Web Developer</h3>
+              <p>
+                Built and maintained websites, landing pages, and small business platforms with a focus on usability and responsiveness.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <div class="container contact-grid">
+          <div class="panel contact-card">
+            <span class="eyebrow">Contact</span>
+            <h2>Let’s build something meaningful together.</h2>
+            <p>
+              Whether you need a portfolio, landing page, or product interface, I’d love to hear about your project.
+            </p>
+            <div class="contact-links">
+              <a href="mailto:hello@jvportfolio.dev" class="contact-item">✉ hello@jvportfolio.dev</a>
+              <a href="https://github.com" target="_blank" rel="noreferrer" class="contact-item">◌ GitHub</a>
+              <a href="https://linkedin.com" target="_blank" rel="noreferrer" class="contact-item">◌ LinkedIn</a>
+            </div>
+          </div>
+
+          <div class="panel">
+            <p>Quick availability</p>
+            <div class="stats-box">
+              <div class="stat">
+                <strong>1</strong>
+                <span>Project in progress</span>
+              </div>
+              <div class="stat">
+                <strong>2</strong>
+                <span>Open slots</span>
+              </div>
+              <div class="stat">
+                <strong>48h</strong>
+                <span>Response time</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© <span id="year"></span> J.V. Portfolio</p>
+        <p>Crafted with creativity and code.</p>
+      </div>
+    </footer>
+
+    <script>
+      const yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      const menuToggle = document.querySelector('.menu-toggle');
+      const navLinks = document.querySelector('.nav-links');
+
+      if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+          const isOpen = navLinks.classList.toggle('open');
+          menuToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        navLinks.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => {
+            navLinks.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
